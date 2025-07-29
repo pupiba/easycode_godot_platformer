@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="easycode_godot_platformer"
-run/main_scene="uid://npwaomr88amy"
+run/main_scene="uid://bc1k5rh8oblar"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://bc1k5rh8oblar"]
+[gd_scene load_steps=14 format=4 uid="uid://bc1k5rh8oblar"]
 
 [ext_resource type="Texture2D" uid="uid://bdjt0jevoc7y1" path="res://assets/arts/sprites/world_tileset.png" id="1_kh38b"]
 [ext_resource type="PackedScene" uid="uid://qmi27paebsu1" path="res://assets/objects/player.tscn" id="2_miecg"]
 [ext_resource type="PackedScene" uid="uid://ddt32ou8kxlft" path="res://assets/objects/coin.tscn" id="3_k5lup"]
+[ext_resource type="Texture2D" uid="uid://dd12ftot53tta" path="res://assets/arts/coin_icon.png" id="3_kjsai"]
+[ext_resource type="FontFile" uid="uid://d0nwdwbhyda4e" path="res://assets/arts/fonts/PixelOperator8.ttf" id="3_v8su6"]
+[ext_resource type="Script" uid="uid://db45qivk1p8fp" path="res://assets/scripts/game_manager.gd" id="5_6eosa"]
+[ext_resource type="PackedScene" uid="uid://bthyjf56tr2wv" path="res://assets/objects/killzone.tscn" id="6_qvob2"]
+[ext_resource type="PackedScene" uid="uid://bcn83ekksso0r" path="res://assets/objects/enemy.tscn" id="7_dsdyw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kh38b"]
 texture = ExtResource("1_kh38b")
@@ -298,6 +303,8 @@ texture = ExtResource("1_kh38b")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_miecg")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qvob2"]
+
 [node name="Level1" type="Node2D"]
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -310,6 +317,22 @@ tile_set = SubResource("TileSet_k5lup")
 
 [node name="Player" parent="." instance=ExtResource("2_miecg")]
 position = Vector2(-42, -23)
+
+[node name="UIManager" type="CanvasLayer" parent="Player"]
+
+[node name="CoinIcon" type="TextureRect" parent="Player/UIManager"]
+offset_right = 109.0
+offset_bottom = 109.0
+texture = ExtResource("3_kjsai")
+
+[node name="CoinLabel" type="Label" parent="Player/UIManager"]
+offset_left = 112.0
+offset_top = 33.0
+offset_right = 158.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("3_v8su6")
+theme_override_font_sizes/font_size = 52
+text = "0"
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -330,3 +353,18 @@ position = Vector2(152, -6)
 
 [node name="Coin6" parent="Coins" instance=ExtResource("3_k5lup")]
 position = Vector2(167, -6)
+
+[node name="GameManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(112, 33)
+script = ExtResource("5_6eosa")
+
+[node name="Killzone" parent="." instance=ExtResource("6_qvob2")]
+position = Vector2(112, 33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-292, 453)
+shape = SubResource("WorldBoundaryShape2D_qvob2")
+
+[node name="Enemy" parent="." instance=ExtResource("7_dsdyw")]
+position = Vector2(615, 68)

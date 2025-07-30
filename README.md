@@ -1,6 +1,6 @@
 # Знакомство с Godot и создание первого проекта
 
-![Label](https://github.com/pupiba/easycode_godot_platformer/raw/main/docs/label.jpg)
+![Label](https://github.com/pupiba/easycode_godot_platformer/raw/main/docs/label.png)
 
 Мечтаешь создать свою первую игру, но не знаешь с чего начать?
 Представляем новый мини-курс из 4 открытых лекций, который поможет тебе освоить один из самых популярных и бесплатных игровых движков — Godot Engine!
